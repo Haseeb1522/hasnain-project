@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M Ali Hasnain — Football Player</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8fafc;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b1d39, #12294e);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    header.hidden { display: none; }
+
+    header h1 { font-size: 3rem; margin-bottom: 10px; }
+    header p { font-size: 1.2rem; opacity: 0.9; }
+
+    nav {
+      background: #12294e;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      padding: 15px 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav button:hover,
+    nav button.active { background: #1d3b70; }
+
+    section {
+      display: none;
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      animation: fade 0.6s ease;
+    }
+
+    section.active { display: block; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: #0b1d39;
+      border-bottom: 2px solid #eee;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+    }
+
+    ul { list-style: none; margin-top: 10px; }
+
+    li {
+      margin: 10px 0;
+      padding: 12px;
+      background: #f4f8ff;
+      border-left: 4px solid #0b1d39;
+      border-radius: 6px;
+    }
+
+    li img {
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 2px solid #0b1d39;
+      width: 150px;
+      height: auto;
+    }
+
+    footer {
+      background: #0b1d39;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+
+    footer.hidden { display: none; }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.2rem; }
+      nav button { padding: 10px 14px; font-size: 0.9rem; }
+      section { margin: 20px 10px; padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <!-- Profile photo at the top -->
+  <img src="Ali.jpg" alt="M Ali Hasnain"
+       style="width:160px;height:160px;border-radius:50%;object-fit:cover;margin-bottom:15px;border:4px solid #fff;" />
+  <h1>M Ali Hasnain</h1>
+  <p>Right Wing Striker</p>
+  <p>Superior College Football Club</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showSection('home', event)">Home</button>
+  <button onclick="showSection('career', event)">Career</button>
+  <button onclick="showSection('education', event)">Education</button>
+  <button onclick="showSection('achievements', event)">Achievements</button>
+  <button onclick="showSection('stats', event)">Playing Style</button>
+  <button onclick="showSection('contact', event)">Contact</button>
+</nav>
+
+<section id="home" class="active">
+  <h2>Player Profile</h2>
+  <p>
+    M Ali Hasnain is a dynamic and pace-driven <strong>Right Wing Striker</strong>
+    representing <strong>Superior College Football Club</strong>. Known for explosive
+    runs, sharp finishing, and relentless pressing.
+  </p>
+</section>
+
+<section id="career">
+  <h2>Club Career</h2>
+  <ul>
+    <li><strong>Club:</strong> Superior College Football Club</li>
+    <li><strong>Position:</strong> Right Wing Striker</li>
+    <li><strong>Role:</strong> Attacking forward with pace and finishing</li>
+  </ul>
+</section>
+
+<section id="education">
+  <h2>Education</h2>
+  <ul>
+    <li>
+      <strong>Matric</strong><br />
+      GOVT High School 152 JB, Chiniot<br />
+      2023 – 2025
+    </li>
+  </ul>
+</section>
+
+<section id="achievements">
+  <h2>Achievements</h2>
+  <ul>
+    <li>🏆 Winner – Inter Colleges Championship 2025</li>
+    <li>🏆 Winner – Grass Root Championship (SA Garden U17)</li>
+  </ul>
+</section>
+
+<section id="stats">
+  <h2>Playing Style</h2>
+  <ul>
+    <li>Explosive pace on right wing</li>
+    <li>Strong off-the-ball movement</li>
+    <li>Confident one-on-one attacker</li>
+    <li>Cut-inside finishing ability</li>
+    <li>High stamina & pressing</li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p><strong>Phone:</strong> <a href="tel:03467985522">0346 7985522</a></p>
+  <p><strong>Phone:</strong> <a href="tel:03484906695">0348 4906695</a></p>
+</section>
+
+<footer id="footer">
+  © 2025 M Ali Hasnain | Football Portfolio
+</footer>
+
+<script>
+  function showSection(id, event) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+
+    const header = document.getElementById('header');
+    const footer = document.getElementById('footer');
+
+    if (id === 'home') {
+      header.classList.remove('hidden');
+      footer.classList.remove('hidden');
+    } else {
+      header.classList.add('hidden');
+      footer.classList.add('hidden');
+    }
+  }
+</script>
+
+</body>
+</html>
