@@ -1,15 +1,15 @@
-name: Build & Push Portfolio Image
+name: Build Push & Deploy Portfolio
 
 on:
   push:
     branches: ["main"]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Repo download
+      # 1️⃣ Repo clone
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -21,9 +21,22 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       # 3️⃣ Build image
-      - name: Build Docker Image
+      - name: Build Image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/football-portfolio:hasnain .
 
       # 4️⃣ Push image
-      - name: Push Docker Image
+      - name: Push Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/football-portfolio:hasnain
+
+      # 5️⃣ Deploy on EC2
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_IP }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USERNAME }}/football-portfolio:hasnain
+            docker stop football || true
+            docker rm football || true
+            docker run -d --name football -p 88:80 ${{ secrets.DOCKER_USERNAME }}/football-portfolio:hasnain
